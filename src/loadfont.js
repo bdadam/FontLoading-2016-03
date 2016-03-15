@@ -92,7 +92,6 @@ window.loadFont = function(sheet, family, weights, className) {
                 updateLocalStorage();
 
                 testDivs.forEach(function(div) {
-                    // div.querySelector('object').contentDocument.defaultView
                     div.parentNode.removeChild(div);
                 });
 
