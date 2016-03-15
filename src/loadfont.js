@@ -86,16 +86,8 @@ window.loadFont = function(sheet, family, weights, className) {
                             testDivs[i+1].clientHeight === testDivs[i+2].clientHeight;
             }
 
-            // var widths = testDivs.map(function(d) { return d.clientWidth; });
-            // // var he = testDivs.map(function(d) { return d.clientWidth; });
-            // console.log(widths);
-            //
             if (allLoaded) {
-
-                console.log('All Loaded');
-
-                console.timestamp('Fonts loaded');
-
+                // console.log('All font weights loaded');
                 document.documentElement.className += ' ' + className;
                 updateLocalStorage();
 

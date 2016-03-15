@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Demo: Webfont Loading in March 2016</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -112,16 +113,8 @@
                             testDivs[i+1].clientHeight === testDivs[i+2].clientHeight;
             }
 
-            // var widths = testDivs.map(function(d) { return d.clientWidth; });
-            // // var he = testDivs.map(function(d) { return d.clientWidth; });
-            // console.log(widths);
-            //
             if (allLoaded) {
-
-                console.log('All Loaded');
-
-                console.timestamp('Fonts loaded');
-
+                // console.log('All font weights loaded');
                 document.documentElement.className += ' ' + className;
                 updateLocalStorage();
 
