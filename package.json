@@ -1,0 +1,23 @@
+{
+  "name": "FontLoading-2016-03",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bdadam/FontLoading-2016-03.git"
+  },
+  "keywords": [],
+  "author": "Adam Beres-Deak <me@bdadam.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bdadam/FontLoading-2016-03/issues"
+  },
+  "homepage": "https://github.com/bdadam/FontLoading-2016-03",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^1.0.0",
+    "grunt-text-replace": "^0.4.0"
+  }
+}

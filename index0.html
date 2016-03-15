@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Font Loading</title>
+    <script>window.addEventListener('load', function() { console.log('load', Date.now()); })</script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 100%;
+            line-height: 1.4;
+        }
+
+        .font-loaded body {
+            font-family: Open Sans, Arial, sans-serif;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            font-weight: 600;
+            font-size: 1.75rem;
+        }
+    </style>
+    <script>
+        window.fontCached = false;
+
+        if (window.fontCached) {
+            document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext">');
+            document.documentElement.className += ' font-loaded';
+        } else {
+            document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" media="x" onload="this.media=\'all\';">');
+        }
+    </script>
+</head>
+<body>
+    <script>
+        if (!window.fontCached) {
+            function loadFont(family, weights, className, timeout) {
+                var testFamilies = ['sans-serif', 'serif', 'monospace'];
+                // var testFamilies = ['sans-serif'];
+
+                function onSizeChange(weight) {
+                    // document.documentElement.className += ' ' + className;
+                    console.log('font-loaded', Date.now());
+                }
+
+                for (var i = 0; i < weights.length; i++) {
+                    for (var j = 0; j < testFamilies.length; j++) {
+                        var div = document.createElement('div');
+                        div.innerHTML = 'MXWmxwi0123<iframe f="' + testFamilies[j] + '" style="display:block;position:absolute;top:0;right:0;bottom:0;left:0;border:0;width:100%;height:100%;"></iframe>';
+                        div.style.cssText = 'z-index:-1;position:absolute;visibility:hidden;display:inline-block;font-family:' + testFamilies[j] + ';font-weight:' + weights[i];
+                        document.body.appendChild(div);
+                        // div.querySelector('iframe').contentWindow.addEventListener('resize', onSizeChange);
+                        var ifr = div.querySelector('iframe');
+
+                        (function(ifr, weight, fam, cw, ch) {
+                            ifr.w = weight;
+                            ifr.f = fam;
+
+                            ifr.contentWindow.addEventListener('resize', function() {
+                                console.log('CH', ifr.clientWidth, ifr.clientHeight, cw, ch, ifr.w, ifr.f);
+                                // onSizeChange(weight);
+                            });
+
+                            div.style.fontFamily = family;
+
+                        }(ifr, weights[i], testFamilies[j], ifr.clientWidth, ifr.clientHeight));
+                    }
+                }
+
+
+                /*
+                var raf = window.requestAnimationFrame || function(fn) { setTimeout(fn, 25); };
+
+                raf(function check() {
+                    var fontLoaded = false;
+
+                    for (var i = 0; i < weights.length; i++) {
+                        fontLoaded = fontLoaded || isFontLoaded(family, weights[i]);
+                    }
+
+                    if (!fontLoaded) {
+                        return raf(check);
+                    }
+
+                    document.documentElement.className += ' ' + className;
+                    console.log('font-loaded', Date.now());
+                });
+                */
+            }
+
+            // loadFont('Open Sans', [400, 600, 700], 'font-loaded');
+            loadFont('Open Sans', [400], 'font-loaded');
+        }
+    </script>
+
+    <script>console.log('start', Date.now());</script>
+
+    <a href="/">Reload</a>
+
+    <h1>Test Document - heading</h1>
+
+    <h2>This is a heading</h2>
+
+    <h2>This is a heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <h2>This is a heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <h2>This is a heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <h2>This is a heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <h2>This is a heading</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <script>console.log('end', Date.now());</script>
+</body>
+</html>

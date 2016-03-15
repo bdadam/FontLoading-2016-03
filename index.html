@@ -3,10 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Font Loading</title>
-    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" rel="stylesheet" media="x" onload="console.log('stylesheet-end', Date.now()); this.media='all'"> -->
-
-
-    <script>window.addEventListener('load', function() { console.log('load', Date.now()); })</script>
+    <!-- <script>window.addEventListener('load', function() { console.log('load', Date.now()); })</script> -->
 
     <style>
         body {
@@ -29,69 +26,39 @@
             font-size: 1.75rem;
         }
     </style>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext"> -->
     <script>
-        loadFontFromGF('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext', 'Open Sans', [400, 600, 700], 'font-loaded');
-
-        function loadFontFromGF(href, family, weights, className, timeout) {
-
-        }
-
-
-        window.fontCached = false;
+        window.fontCached = true;
 
         if (window.fontCached) {
+
+            // console.log(document.head.innerHTML);
+            // var head = document.getElementsByTagName('head')[0];
+            // head.innerHTML += '<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext">';
+
+
             document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext">');
+            // document.documentElement.className += ' font-loaded';
+
+            // var link = document.createElement('link');
+            // link.rel = 'stylesheet';
+            // link.href = 'https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext';
+            // var script = document.getElementsByTagName('script')[0];
+            // script.parentNode.insertBefore(link, script);
+
             document.documentElement.className += ' font-loaded';
+
         } else {
             // document.write('<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" media="only x" onload="this.media=\'all\';">');
         }
     </script>
 </head>
 <body>
-    <!-- <div id="qwe" style="font-family: Open Sans; position: relative; display: inline-block;">
-        <iframe id="asdf" style="display: block; position: absolute; top: 0; right: 0; bottom: 0; left: 0; border: 0; width: 100%; height: 100%;"></iframe>
-        MWXmwx
-    </div> -->
-    <script>
-        // var qwe = document.querySelector('#qwe');
-        // var w = qwe.clientWidth;
-        // var h = qwe.clientHeight;
-        //
-        // qwe.style.width = w + 'px';
-        // qwe.style.height = h + 'px';
-        //
-        // document.querySelector('#qwe').addEventListener('overflow', function(e) { console.log(e); });
-        // document.querySelector('#qwe').addEventListener('underflow', function(e) { console.log(e); });
-        // document.querySelector('#qwe').addEventListener('overflowchanged', function(e) { console.log(e); });
-        // document.querySelector('#qwe').innerHTML = 'klsduf9osf98s9a08f09a8sdfsdfuoisufiouoisudfusidf';
-
-        // var ifr = document.querySelector('#asdf');
-        // var win = ifr.contentWindow;
-        // win.addEventListener('resize', function(){ console.log('ifr-resize') });
-        // console.log(ifr);
-
-
-        // var ix = document.createElement('iframe');
-        // console.log('D', ix.contentDocument);
-        // console.log('W', ix.contentWindow);
-        // ix.onload = function() {
-        //     console.log('iframe loaded', Date.now());
-        // };
-        // document.body.appendChild(ix);
-        // ix.contentWindow.document.head.innerHTML = '<style>body{font-family:Open Sans;}</style><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext" media="x" onload="this.media=\'all\';">';
-        // ix.contentWindow.document.body.innerHTML = 'MXWmxw012';
-
-
-        // console.log(ix.contentWindow.document.head);
-        // console.log(ix.contentWindow.document.body);
-
-    </script>
-
     <script>
         if (!window.fontCached) {
             function loadFont(sheet, family, weights, className, timeout) {
                 var testFamilies = ['sans-serif', 'serif', 'monospace'];
-                var raf = window.requestAnimationFrame || function(fn) { setTimeout(fn, 50); };
+                var raf = window.requestAnimationFrame || function(fn) { return setTimeout(fn, 50); };
                 var caf = window.cancelAnimationFrame || clearTimeout;
 
                 var link = document.createElement('link');
@@ -110,7 +77,7 @@
 
                         console.log('SC');
 
-                        if (!currentFrame) {
+                        if (currentFrame) {
                             caf(currentFrame);
                             currentFrame = null;
                         }
@@ -139,22 +106,10 @@
                     for (var i = 0; i < weights.length; i++) {
                         for (var j = 0; j < testFamilies.length; j++) {
                             var div = document.createElement('div');
-                            // div.innerHTML = 'MXWmxwi0123<iframe f="' + testFamilies[j] + '" style="display:block;position:absolute;top:0;right:0;bottom:0;left:0;border:0;width:100%;height:100%;"></iframe>';
-                            // div.innerHTML = '<object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html"></object><iframe style="display:block;position:absolute;top:0;right:0;bottom:0;left:0;border:0;width:100%;height:100%;"></iframe>MXWmxwi0123';
                             div.innerHTML = '<object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html"></object>MXWmxwi0123';
-                            // div.innerHTML = '<object style="display: block; position: absolute; top: 0; left: 0; height: 100%; width: 100%; overflow: hidden; pointer-events: none; z-index: -1;" type="text/html"></object>MXWmxwi0123';
-                            // div.style.cssText = 'z-index:-1;position:absolute;visibility:hidden;display:inline-block;line-height:1;font-size:16px;font-family:' + testFamilies[j] + ';font-weight:' + weights[i];
                             div.style.cssText = 'z-index:-1;position:absolute;visibility:hidden;display:inline-block;line-height:1;font-size:16px;font-family:' + family + ',' + testFamilies[j] + ';font-weight:' + weights[i];
-                            // div.style.cssText = 'z-index:-1;position:absolute;visibility:hidden;display:inline;font-family:' + testFamilies[j] + ';font-weight:' + weights[i];
-                            // div.style.cssText = 'display:inline-block;font-family:' + testFamilies[j] + ';font-weight:' + weights[i];
                             document.body.appendChild(div);
-                            // var ifr = div.querySelector('iframe');
-
                             var obj = div.querySelector('object');
-
-                            // obj.contentDocument.defaultView.addEventListener('resize', function() {
-                            //     console.log('obj-resize');
-                            // });
 
                             (function(testFam) {
 
@@ -163,42 +118,11 @@
                                     console.log('Onload');
                                     onSizeChange();
                                     this.contentDocument.defaultView.addEventListener('resize', function() { console.log('obj-resize'); onSizeChange(); });
-                                    // div.style.fontFamily = family + ',' + testFam;
                                 };
 
-                                // obj.data = 'about:blank';
-
                             }(testFamilies[j]));
-                            // obj.data = 'about:blank';
-
-                            // iframes.push(ifr);
-
-                            // // ifr.contentWindow.addEventListener('resize', function() {
-                            // ifr.contentWindow.onresize = function() {
-                            //     // console.log('CH', ifr.clientWidth, ifr.clientHeight, cw, ch, ifr.w, ifr.f);
-                            //     console.log('IframeSizeChange');
-                            //     // onSizeChange();
-                            // // });
-                            // };
-
-                            // div.style.fontFamily = family + ',' + testFamilies[j];
-
-
-                            // (function(ifr, weight, fam, cw, ch, div) {
-                            //     ifr.w = weight;
-                            //     ifr.f = fam;
-                            //     ifr.contentWindow.addEventListener('resize', function() {
-                            //         // console.log('CH', ifr.clientWidth, ifr.clientHeight, cw, ch, ifr.w, ifr.f);
-                            //         onSizeChange();
-                            //     });
-                            //
-                            //     div.style.fontFamily = family + ',' + fam;
-                            //     iframes.push(ifr);
-                            //
-                            // }(ifr, weights[i], testFamilies[j], ifr.clientWidth, ifr.clientHeight, div));
                         }
                     }
-
                 };
                 document.head.appendChild(link);
             }
