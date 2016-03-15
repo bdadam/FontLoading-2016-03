@@ -30,14 +30,15 @@ window.loadFont = function(sheet, family, weights, className) {
                         obj.data = 'about:blank';
                         obj.onload = function() {
                             // this.contentDocument.defaultView.addEventListener('resize', onObjectSizeChange);
+                            this.contentDocument.defaultView.onresize = onObjectSizeChange;
 
-                            console.log(this.contentDocument);
-
-                            this.contentDocument.defaultView.addEventListener('resize', function() {
-                                console.log('SIZE');
-                                onObjectSizeChange();
-                            });
-                            onObjectSizeChange();
+                            // console.log(this.contentDocument);
+                            //
+                            // this.contentDocument.defaultView.onresize = function() {
+                            //     console.log('SIZE');
+                            //     onObjectSizeChange();
+                            // };
+                            // onObjectSizeChange();
                         };
 
                         // obj.data = 'about:blank';
@@ -115,7 +116,11 @@ window.loadFont = function(sheet, family, weights, className) {
                 console.log('All Loaded');
                 document.documentElement.className += ' ' + className;
 
-                onSizeChange = function(){};
+                testDivs.forEach(function(div) {
+                    div.parentNode.removeChild(div);
+                });
+
+                onObjectSizeChange = function(){};
             }
         });
 
